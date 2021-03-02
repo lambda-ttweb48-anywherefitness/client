@@ -48,15 +48,12 @@ export default function LoginForm(props) {
                         <p>{errors.password}</p>
                     </div>
                     <div></div>
+                    <button type="submit" disabled={disabled}>
+                        Login
+                    </button>
                 </form>
-                <ButtonStyle type="submit" disabled={disabled}>
-                    Login
-                </ButtonStyle>
-
                 <Link to="/register">
-                    <ButtonStyle>
-                        Don't have an account? Create one here!
-                    </ButtonStyle>
+                    <button>Don't have an account? Create one here!</button>
                 </Link>
             </FormDiv>
         </div>
@@ -73,22 +70,6 @@ const H1style = styled.h1`
     letter-spacing: 3.69231px;
     color: #434343;
     opacity: 0.4;
-`;
-
-const ButtonStyle = styled.button`
-    width: 100%;
-    height: 2.75rem;
-    border-radius: 4px;
-    outline: none;
-    margin: auto;
-    text-transform: uppercase;
-    background-color: #522d80;
-    color: white;
-    font-size: 1rem;
-    border: 0.5px solid rgba(82, 45, 128, 0.5);
-    font-family: "Montserrat", sans-serif;
-    display: block;
-    margin-top: 1rem;
 `;
 
 const FormDiv = styled.div`
@@ -121,5 +102,20 @@ const FormDiv = styled.div`
         font-size: 1.15rem;
         font-family: "Montserrat", sans-serif;
         color: red;
+    }
+    button {
+        width: 100%;
+        height: 2.75rem;
+        border-radius: 4px;
+        outline: none;
+        margin: auto;
+        text-transform: uppercase;
+        background-color: #522d80;
+        color: white;
+        font-size: 1rem;
+        border: 0.5px solid rgba(82, 45, 128, 0.5);
+        font-family: "Montserrat", sans-serif;
+        display: block;
+        margin-top: 1rem;
     }
 `;
