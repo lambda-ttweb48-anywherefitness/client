@@ -1,8 +1,26 @@
+import { Switch, Route } from "react-router-dom";
+import React from "react";
+
+import Login from "./components/Login/Login.js";
+import Register from "./components/Register/Register.js";
+
+import { UserContext } from "./utils/UserContext";
+import { useProfile } from "./utils/useProfile";
 
 function App() {
-    return <div className="App">
-
-    </div>;
+    const [user, setUser] = useProfile();
+    return (
+        <div>
+            <UserContext.Provider value={{ user, setUser }}>
+                <main>
+                    <Switch>
+                        <Route exact path="/login" component={Login} />
+                        <Route path="/register" component={Register} />
+                    </Switch>
+                </main>
+            </UserContext.Provider>
+        </div>
+    );
 }
 
 export default App;
