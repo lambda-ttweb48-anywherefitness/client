@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import * as Yup from "yup";
 
+
 import Schema from "./LoginSchema.js";
 import { UserContext } from "../../utils/UserContext.js";
 import LoginForm from "./LoginForm.js";
@@ -30,7 +31,7 @@ export default function Login() {
         axiosWithAuth()
             .post("https://anywherefitness-server.herokuapp.com/login", user)
             .then((res) => {
-                setUser(res.data.profile);
+                setUser(res.data.Profile);
                 localStorage.setItem("token", res.data.token);
                 setFormValues(initialFormValues);
                 history.push("/dashboard");
@@ -87,9 +88,9 @@ export default function Login() {
                     submit={submitForm}
                 />
             </div>
-            <button>
-                <a href="/register">Don't have an account? Create one here!</a>
-            </button>
+            
         </div>
     );
 }
+
+

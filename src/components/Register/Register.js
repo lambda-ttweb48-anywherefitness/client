@@ -36,7 +36,7 @@ export default function Register() {
                 newUser
             )
             .then((res) => {
-                setUser(res.data.profile);
+                setUser(res.data.Profile);
                 setFormValues(initialFormValues);
                 localStorage.setItem("token", res.data.token);
                 history.push("/login")    
