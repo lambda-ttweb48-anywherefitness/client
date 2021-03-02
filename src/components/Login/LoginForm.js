@@ -118,4 +118,36 @@ const FormDiv = styled.div`
         display: block;
         margin-top: 1rem;
     }
+
+    button:hover {
+        width: 100%;
+        height: 2.75rem;
+        border-radius: 4px;
+        outline: none;
+        margin: auto;
+        text-transform: uppercase;
+        background-color: #522d80;
+        color: black;
+        font-size: 1rem;
+        border: 0.5px solid rgba(82, 45, 128, 0.5);
+        font-family: "Montserrat", sans-serif;
+        display: block;
+        margin-top: 1rem;  
+    }
+
+    button:disabled {
+        width: 100%;
+        height: 2.75rem;
+        border-radius: 4px;
+        outline: none;
+        margin: auto;
+        text-transform: uppercase;
+        background-color: #6b6670;
+        color: grey;
+        font-size: 1rem;
+        border: 0.5px solid rgba(82, 45, 128, 0.5);
+        font-family: "Montserrat", sans-serif;
+        display: block;
+        margin-top: 1rem;
+    } 
 `;

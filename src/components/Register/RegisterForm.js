@@ -17,9 +17,7 @@ export default function LoginForm(props) {
 
     return (
         <div>
-            <H1style>
-                Create Account
-            </H1style>
+            <H1style>Create Account</H1style>
             <FormDiv>
                 <form onSubmit={onSubmit}>
                     <div>
@@ -65,8 +63,7 @@ export default function LoginForm(props) {
                                 onChange={onChange}
                                 value={values.instructor}
                                 name="instructor"
-                                type="checkbox"
-                                ></input>
+                                type="checkbox"></input>
                         </label>
                     </div>
                     <div>
@@ -106,6 +103,38 @@ const ButtonStyle = styled.button`
     font-family: "Montserrat", sans-serif;
     display: block;
     margin-top: 1rem;
+
+    :hover {
+        width: 100%;
+        height: 2.75rem;
+        border-radius: 4px;
+        outline: none;
+        margin: auto;
+        text-transform: uppercase;
+        background-color: #522d80;
+        color: black;
+        font-size: 1rem;
+        border: 0.5px solid rgba(82, 45, 128, 0.5);
+        font-family: "Montserrat", sans-serif;
+        display: block;
+        margin-top: 1rem;
+    }
+
+    :disabled {
+        width: 100%;
+        height: 2.75rem;
+        border-radius: 4px;
+        outline: none;
+        margin: auto;
+        text-transform: uppercase;
+        background-color: #6b6670;
+        color: grey;
+        font-size: 1rem;
+        border: 0.5px solid rgba(82, 45, 128, 0.5);
+        font-family: "Montserrat", sans-serif;
+        display: block;
+        margin-top: 1rem;
+    } 
 `;
 
 const FormDiv = styled.div`
