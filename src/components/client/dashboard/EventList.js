@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
+import { axiosWithAuth } from '../../../utils/axiosWithAuth';
 
 import styled from 'styled-components';
 
@@ -36,6 +38,16 @@ const Content = styled.div`
 
 
 export default function EventList( props ){
+
+    const [ classes, setClasses ] = useState([]);
+
+    useEffect(() => {
+        axiosWithAuth().get(`https://anywherefitness-server.herokuapp.com/dash/reservations`)
+            .then(res =>{
+                setClasses( res.data );
+            })
+            .catch( err => console.log( err ) );
+    }, [] )
     
     const details = {
         type: 'Yoga Session',

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { UserContext } from '../../../utils/UserContext';
 import styled from 'styled-components';
 
 import EventList from './EventList';
@@ -45,12 +46,12 @@ const Container = styled.div`
     margin-top:3%;
 `
 export default function ClientDashboard( props ){
-
+    const { user } = useContext( UserContext );
 
   return(
     <div>
         <Heading>
-            <Greeting>Hello Terry</Greeting>
+            <Greeting>Hello { user.name }</Greeting>
             <div>
                 <ClassButton>Join A Class</ClassButton>
             </div>

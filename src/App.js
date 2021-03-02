@@ -5,6 +5,13 @@ import styled from 'styled-components';
 
 import Header from './components/header';
 
+import Login from "./components/Login/Login.js";
+import Register from "./components/Register/Register.js";
+
+import { UserContext } from "./utils/UserContext";
+import { useProfile } from "./utils/useProfile";
+import PrivateRoute from './utils/PrivateRoute';
+
 import ClientDashboard from './components/client/dashboard';
 
 
@@ -15,14 +22,20 @@ const Container = styled.div`
 `
 
 function App() {
+    const [user, setUser] = useProfile();
+
     return <div className="App">
-        <Header />
-        
-        <Container>
-            <Switch>
-                <Route path="/dashboard" component={ ClientDashboard }/>
-            </Switch>
-        </Container>
+        <UserContext.Provider value={{ user, setUser }}>
+            <Header />
+            
+            <Container>
+                <Switch>
+                    <Route exact path="/login" component={Login} />
+                    <Route path="/register" component={Register} />
+                    <PrivateRoute path="/dashboard" component={ ClientDashboard }/>
+                </Switch>
+            </Container>
+        </UserContext.Provider>
 
     </div>;
 }
