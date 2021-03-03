@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { UserContext } from '../../../utils/UserContext';
 
 import EventList from './EventList';
+import PassList from './PassList';
 
 export default function ClientDashboard( props ){
     const { user } = useContext( UserContext );
@@ -23,6 +24,7 @@ export default function ClientDashboard( props ){
 
         <Container>
             <EventList />
+            <PassList />
         </Container>
     </div>
   );
