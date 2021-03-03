@@ -8,6 +8,56 @@ import Event from './Event';
 
 
 
+
+
+export default function EventList( props ){
+
+    const [ classes, setClasses ] = useState([]);
+
+    useEffect(() => {
+        axiosWithAuth().get(`https://anywherefitness-server.herokuapp.com/dash/reservations`)
+            .then(res =>{
+                res.data.forEach( item => {
+                    axiosWithAuth().get(`https://anywherefitness-server.herokuapp.com/api/classes/${item.class_id}`)
+                        .then( result => {
+                            setClasses([
+                                ...classes,
+                                result.data
+                            ])
+                        })
+                        .catch( err => console.log( err ) );
+                })
+
+            })
+            .catch( err => console.log( err ) );
+
+            getPasses();
+    }, [] )
+
+    const getPasses = () => {
+        axiosWithAuth().get(`https://anywherefitness-server.herokuapp.com/dash/client_passes`)
+            .then( res => {
+                console.log("PASSES: ", res.data );
+            })
+    }
+
+  return(
+    <ContentBox>
+        {console.log("CLASSES ", classes)}
+        <Title>Upcoming Events</Title>
+        <Content>
+            {
+                classes.map( item => {
+                    return <Event details={item} key={ item.id }/>
+                })
+            }
+        </Content>
+    </ContentBox>
+  );
+}
+
+
+
 const ContentBox = styled.div`
     margin-bottom:5%;
 `
@@ -34,35 +84,3 @@ const Content = styled.div`
     flex-direction:column;
     justify-content:space-between;
 `
-
-
-
-export default function EventList( props ){
-
-    const [ classes, setClasses ] = useState([]);
-
-    useEffect(() => {
-        axiosWithAuth().get(`https://anywherefitness-server.herokuapp.com/dash/reservations`)
-            .then(res =>{
-                setClasses( res.data );
-            })
-            .catch( err => console.log( err ) );
-    }, [] )
-    
-    const details = {
-        type: 'Yoga Session',
-        coach: 'Coach Neil',
-        location: 'Central park',
-        date:'Fri, Feb 26 @ 5:45 pm',
-    }
-
-  return(
-    <ContentBox>
-        <Title>Upcoming Events</Title>
-        <Content>
-            <Event details={details}/>
-            <Event details={details}/>
-        </Content>
-    </ContentBox>
-  );
-}

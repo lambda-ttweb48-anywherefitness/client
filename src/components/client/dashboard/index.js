@@ -1,8 +1,35 @@
 import React, { useContext } from 'react';
-import { UserContext } from '../../../utils/UserContext';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { UserContext } from '../../../utils/UserContext';
+
 import EventList from './EventList';
+
+export default function ClientDashboard( props ){
+    const { user } = useContext( UserContext );
+    const history = useHistory();
+
+  return(
+    <div>
+        <Heading>
+            <Greeting>Hello { user.name }</Greeting>
+            <div>
+                <ClassButton onClick={ () => {history.push('/search') }}>Join A Class</ClassButton>
+            </div>
+        </Heading>
+
+        <Container>
+            <EventList />
+        </Container>
+    </div>
+  );
+}
+
+
+
+
+
 
 const Heading = styled.div`
     border-bottom:1px solid #522D80;
@@ -44,22 +71,5 @@ const ClassButton = styled.button`
 `
 const Container = styled.div`
     margin-top:3%;
+    margin-bottom:5%;
 `
-export default function ClientDashboard( props ){
-    const { user } = useContext( UserContext );
-
-  return(
-    <div>
-        <Heading>
-            <Greeting>Hello { user.name }</Greeting>
-            <div>
-                <ClassButton>Join A Class</ClassButton>
-            </div>
-        </Heading>
-
-        <Container>
-            <EventList />
-        </Container>
-    </div>
-  );
-}

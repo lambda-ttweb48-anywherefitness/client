@@ -13,6 +13,7 @@ import { useProfile } from "./utils/useProfile";
 import PrivateRoute from './utils/PrivateRoute';
 
 import ClientDashboard from './components/client/dashboard';
+import Search from './components/client/Search';
 
 
 const Container = styled.div`
@@ -33,6 +34,7 @@ function App() {
                     <Route exact path="/login" component={Login} />
                     <Route path="/register" component={Register} />
                     <PrivateRoute path="/dashboard" component={ ClientDashboard }/>
+                    <Route path="/search" component={ Search }/>
                 </Switch>
             </Container>
         </UserContext.Provider>

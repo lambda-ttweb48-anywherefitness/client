@@ -1,15 +1,54 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+
+import {axiosWithAuth} from '../../../utils/axiosWithAuth';
+import { capitalizeString } from '../../../utils';
+import FormatDate from '../../../utils/FormatDate';
 
 import styled from 'styled-components';
-
-import editIcon from '../../../assets/images/icons/edit.png'
-import pinIcon from '../../../assets/images/icons/pin.png'
-import userIcon from '../../../assets/images/icons/user.png'
 
 /**
  * CUSTOM IMPORTS
  */
+import editIcon from '../../../assets/images/icons/edit.png'
+import pinIcon from '../../../assets/images/icons/pin.png'
+import userIcon from '../../../assets/images/icons/user.png'
+
+
+export default function Event( { details } ){
+
+    const history = useHistory();
+
+    const cancelReservation = ( id ) =>{
+        axiosWithAuth().delete(`https://anywherefitness-server.herokuapp.com/api/reservations/${id}`)
+            .then( res => {
+                history.push('/dashboard');
+            })
+            .catch( err => console.log( err ) );
+    }
+
+
+  return(
+    <ClassCard>
+        <ClassInfo>
+            <ul>
+                <li><span><img src={editIcon} alt={editIcon}/></span>{ capitalizeString(details.name) }</li>
+                <li><span><img src={userIcon} alt={userIcon}/></span>{ capitalizeString(details.instructor) }</li>
+                <li><span><img src={pinIcon} alt={pinIcon}/></span>{ capitalizeString(details.location) }</li>
+            </ul>
+        </ClassInfo>
+        <ClassTime>
+            <h2>{ FormatDate(details.start) }</h2>
+            <div className="card-links">
+                <Link to='/dashboard' onClick={ () => cancelReservation(details.id) }>Cancel Reservation</Link>
+            </div>
+        </ClassTime>
+    </ClassCard>
+  );
+}
+
+
+
 
 const ClassCard = styled.div`
     background: #FFFFFF;
@@ -54,24 +93,3 @@ const ClassTime = styled.div`
     align-items:flex-end;
     justify-content:space-between;
 `
-
-export default function Event( { details } ){
-
-  return(
-    <ClassCard>
-        <ClassInfo>
-            <ul>
-                <li><span><img src={editIcon}/></span>{ details.type }</li>
-                <li><span><img src={userIcon}/></span>{ details.coach }</li>
-                <li><span><img src={pinIcon}/></span>{ details.location }</li>
-            </ul>
-        </ClassInfo>
-        <ClassTime>
-            <h2>{ details.date }</h2>
-            <div className="card-links">
-                <Link to="/">Cancel Reservation</Link>
-            </div>
-        </ClassTime>
-    </ClassCard>
-  );
-}
