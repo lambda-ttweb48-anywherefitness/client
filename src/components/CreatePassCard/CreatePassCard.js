@@ -51,9 +51,6 @@ function CreatePassCard() {
     const onSubmit = (e) => {
         e.preventDefault()
         updateErrors()
-        console.log('yo');
-        console.log(errors.total_classes)
-        console.log(errors.price)
         Schema.isValid(formValues).then((valid) => {
             if (valid) {
                 axiosWithAuth()
@@ -117,7 +114,7 @@ export default CreatePassCard;
 
 const CreatePassForm = styled.div`
     background-color: #EAE1F5;
-    width: 33%;
+    width: 60%;
     border-radius: 8px;
     margin: auto;
     padding: 2rem;
@@ -171,6 +168,7 @@ const CreatePassForm = styled.div`
         box-sizing: border-box;
         border: .5px solid rgba(82, 45, 128, 0.5);
         font-family: 'Montserrat', sans-serif;
+        margin-bottom: .5rem;
     }
 
     .workoutTitle {
