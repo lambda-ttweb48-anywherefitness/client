@@ -3,6 +3,7 @@ import React from "react";
 
 import Login from "./components/Login/Login.js";
 import Register from "./components/Register/Register.js";
+import IDashboard from "./components/instructorDB/instructorDB"
 
 import { UserContext } from "./utils/UserContext";
 import { useProfile } from "./utils/useProfile";
@@ -16,6 +17,7 @@ function App() {
                     <Switch>
                         <Route exact path="/login" component={Login} />
                         <Route path="/register" component={Register} />
+                        <Route path="/instructorDB" component={IDashboard} />
                     </Switch>
                 </main>
             </UserContext.Provider>

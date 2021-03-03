@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import styled from 'styled-components'
 import {useHistory} from 'react-router-dom'
-import axios from 'axios'
+
 import editIcon from '../../assets/images/icons/edit-3.png'
 import clockIcon from '../../assets/images/icons/clock.png'
 import activityIcon from  '../../assets/images/icons/activity.png'
 import locIcon from '../../assets/images/icons/map-pin.png'
+import { UserContext } from "../../utils/UserContext.js";
 
 
 import { axiosWithAuth } from "../../utils/axiosWithAuth.js";
+
 
 
 const StyledContainer = styled.div`
@@ -157,10 +159,14 @@ const ClassInfo = styled.div`
 
 export default function IDashboard( props ){
     const [classes, setClasses] = useState([]);
+    const {user} = useContext(UserContext);
+    const history = useHistory()
+    const handleClick1 = () => history.push('/CreatClass')
+    const handleClick2 = () => history.push('/CreatePassCard')
 
     useEffect( ()  => {
         axiosWithAuth()
-            .get("https://anywherefitness-server.herokuapp.com/api/classes?start=all" )
+            .get("https://anywherefitness-server.herokuapp.com/dash/classes" )
             .then((res) => {
                 setClasses(res.data);
                 console.log(res.data);
@@ -176,9 +182,9 @@ export default function IDashboard( props ){
         <StyledContainer>
 
             <StyledInfo>
-                <StyledName>Hello Name</StyledName>
-                <StyledButton1 id="createPasscard">Create Passcard</StyledButton1>
-                <StyledButton2 id="createClass">Create Class</StyledButton2>
+                <StyledName>Hello {user.name}</StyledName>
+                <StyledButton1 id="createPasscard" onClick={handleClick2}>Create Passcard</StyledButton1>
+                <StyledButton2 id="createClass" onClick={handleClick1}>Create Class</StyledButton2>
                 <StyledLine></StyledLine>
             </StyledInfo>
             <StyledEvents>UPCOMING EVENTS</StyledEvents>
@@ -195,7 +201,8 @@ export default function IDashboard( props ){
                                     <li><span></span>{item.start}</li>
                                     <li><span><img src={clockIcon}/></span>{item.duration}</li>
                                     <li><span><img src={activityIcon}/></span>{item.intensity}</li>
-                                    <li><spa><img src={locIcon}/></spa>{item.location}</li>
+                                    <li><span><img src={locIcon}/></span>{item.location}</li>
+                                    <li><span>edit</span></li>
                                 </ul>
                                 </ClassInfo>
 
