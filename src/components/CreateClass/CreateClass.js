@@ -201,15 +201,14 @@ function CreateClass() {
 export default CreateClass;
 
 const H1 = styled.h1`
-    width: 45%;
     margin: auto;
     text-align: center;
     margin-bottom: 1.5rem;
     margin-top: 2rem;
     text-transform: uppercase;
     opacity: 40%;
-    font-family: 'Montserrat', sans-serif;
-
+    font-weight:600;
+    font-size:1.5rem;
 `
 
 const CreateClassForm = styled.div`
@@ -223,8 +222,9 @@ const CreateClassForm = styled.div`
     h3 {
         opacity: 40%;
         margin-bottom: .75rem;
+        margin-top:.75rem;
         font-size: 1.15rem;
-        font-family: 'Montserrat', sans-serif;
+        font-weight:600;
     }
 
     input {

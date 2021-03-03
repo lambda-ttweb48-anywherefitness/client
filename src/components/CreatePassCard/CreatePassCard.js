@@ -123,11 +123,13 @@ const CreatePassForm = styled.div`
     padding: 2rem;
     border: 1px solid rgba(82, 45, 128, 0.2);
     margin-top: 14rem;
+    font-weight:600;
 
 
     h3 {
         opacity: 25%;
         margin-bottom: .75rem;
+        margin-top: .75rem;
         font-size: 1rem;
         font-family: 'Montserrat', sans-serif;
         letter-spacing: 1px;
