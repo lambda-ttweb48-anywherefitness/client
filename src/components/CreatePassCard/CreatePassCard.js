@@ -93,6 +93,7 @@ function CreatePassCard() {
                         <h3>PRICE</h3>
                         <input 
                             type='number'
+                            step='.01'
                             placeholder='Total price?'
                             name='price'
                             className='inputValue'
