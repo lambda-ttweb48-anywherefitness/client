@@ -181,7 +181,7 @@ function CreateClass() {
                         <h3>MAX CLASS SIZE</h3>
                     </label>
                     <input 
-                        type='text'
+                        type='number'
                         placeholder="How many people can join?"
                         className='inputValue'
                         name='max_size'

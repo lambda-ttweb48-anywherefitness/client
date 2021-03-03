@@ -14,6 +14,6 @@ export default Yup.object().shape({
         .required('Please select intensity level'),
     location: Yup.string()
         .required('Please select workout location'),
-    max_size: Yup.string()
+    max_size: Yup.number()
         .required('Please enter class limit'),
 })
