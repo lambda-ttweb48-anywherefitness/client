@@ -13,6 +13,8 @@ export default function ClientDashboard( props ){
   return(
     <div>
         <Heading>
+        {console.log("USER: ", user)}
+
             <Greeting>Hello { user.name }</Greeting>
             <div>
                 <ClassButton onClick={ () => {history.push('/search') }}>Join A Class</ClassButton>

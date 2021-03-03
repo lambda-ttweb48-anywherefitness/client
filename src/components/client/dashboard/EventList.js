@@ -16,18 +16,10 @@ export default function EventList( props ){
 
     useEffect(() => {
         axiosWithAuth().get(`https://anywherefitness-server.herokuapp.com/dash/reservations`)
-            .then(res =>{
-                res.data.forEach( item => {
-                    axiosWithAuth().get(`https://anywherefitness-server.herokuapp.com/api/classes/${item.class_id}`)
-                        .then( result => {
-                            setClasses([
-                                ...classes,
-                                result.data
-                            ])
-                        })
-                        .catch( err => console.log( err ) );
-                })
-
+            .then( res =>{
+                setClasses(
+                    res.data
+                )
             })
             .catch( err => console.log( err ) );
 
@@ -41,9 +33,10 @@ export default function EventList( props ){
             })
     }
 
+
   return(
     <ContentBox>
-        {console.log("CLASSES ", classes)}
+        {console.log("CLASSES: ", classes)}
         <Title>Upcoming Events</Title>
         <Content>
             {
