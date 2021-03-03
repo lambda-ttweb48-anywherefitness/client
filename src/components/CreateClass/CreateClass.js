@@ -70,19 +70,12 @@ function CreateClass() {
         e.preventDefault()
         updateErrors()
         Schema.isValid(formValues).then((valid) => {
-            // setButtonDisable(!valid);
             if (valid) {
                 axiosWithAuth()
                 .post('https://anywherefitness-server.herokuapp.com/api/classes', formValues)
                 .then(res => {
-                    console.log(res.data)
-                    history.push('/');
-
-                    // setUser(res.data.profile);
-                    // localStorage.setItem("token", res.data.token);
-                    // setFormValues(initialFormValues);
-                    // history.push("/dashboard");
-
+                    // console.log(res.data)
+                    history.push('/dashboard');
                 })
                 .catch(err => {
                     console.log(err)

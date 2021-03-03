@@ -18,6 +18,7 @@ function App() {
                         <Route exact path="/login" component={Login} />
                         <Route path="/register" component={Register} />
                         <Route path='/createclass' component={CreateClass} />
+                        <Route path='/dashboard' />
                     </Switch>
                 </main>
             </UserContext.Provider>
