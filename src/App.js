@@ -7,8 +7,11 @@ import Header from './components/header';
 
 import Login from "./components/Login/Login.js";
 import Register from "./components/Register/Register.js";
+import IDashboard from "./components/instructorDB/instructorDB"
+
 import CreateClass from './components/CreateClass/CreateClass';
 import CreatePassCard from './components/CreatePassCard/CreatePassCard.js';
+
 
 import { UserContext } from "./utils/UserContext";
 import { useProfile } from "./utils/useProfile";
@@ -26,7 +29,7 @@ const Container = styled.div`
 
 function App() {
     const [user, setUser] = useProfile();
-
+  
     return <div className="App">
         <UserContext.Provider value={{ user, setUser }}>
             <Header />
@@ -42,7 +45,7 @@ function App() {
                         ?
                         <PrivateRoute path="/dashboard" component={ ClientDashboard }/>
                         :
-                        <PrivateRoute path="/dashboard" component={ ClientDashboard }/> //instructor dash once craig merges with main
+                        <PrivateRoute path="/dashboard" component={ IDashboard }/> //instructor dash once craig merges with main
                     }
                     <Route path="/search" component={ Search }/>
                     <Route path='/createpass' component={CreatePassCard} />
@@ -51,6 +54,7 @@ function App() {
         </UserContext.Provider>
 
     </div>;
+
 }
 
 export default App;

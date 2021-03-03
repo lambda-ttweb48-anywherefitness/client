@@ -37,6 +37,7 @@ export default function Login() {
             .then((res) => {
                 setUser(res.data.Profile);
                 localStorage.setItem("token", res.data.token);
+                console.log( res.data );
                 setFormValues(initialFormValues);
                 history.push("/dashboard");
             })
@@ -94,6 +95,7 @@ export default function Login() {
                     serverErrors={serverErrors}
                 />
             </div>
+
         </div>
     );
 }
