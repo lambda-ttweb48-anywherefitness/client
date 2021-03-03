@@ -23,6 +23,7 @@ export default function Event( { details } ){
         axiosWithAuth().delete(`https://anywherefitness-server.herokuapp.com/api/reservations/${id}`)
             .then( res => {
                 history.push('/dashboard');
+                window.location.reload();
             })
             .catch( err => console.log( err ) );
     }
