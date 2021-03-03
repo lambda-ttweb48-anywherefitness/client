@@ -20,11 +20,16 @@ const initialFormErrors = {
     password: "",
 };
 
+const initialServerErrors = {
+    err: "",
+};
+
 const buttonDisabled = true;
 
 export default function Register() {
     const [buttonDisable, setButtonDisable] = useState(buttonDisabled);
     const [formValues, setFormValues] = useState(initialFormValues);
+    const [serverErrors, setServerErrors] = useState(initialServerErrors);
     const [errors, setErrors] = useState(initialFormErrors);
     const { setUser } = useContext(UserContext);
     const history = useHistory();
@@ -39,10 +44,11 @@ export default function Register() {
                 setUser(res.data.Profile);
                 setFormValues(initialFormValues);
                 localStorage.setItem("token", res.data.token);
-                history.push("/login")    
+                history.push("/dashboard");
             })
             .catch((err) => {
-                console.log(err.res);
+                // console.log(err.res);
+                setServerErrors({ err: err.response.data.message });
             });
     };
 
@@ -92,6 +98,7 @@ export default function Register() {
                 change={changes}
                 errors={errors}
                 submit={submitForm}
+                serverErrors={serverErrors}
             />
         </div>
     );
