@@ -24,10 +24,12 @@ export default function LoginForm(props) {
                         <label>
                             <h2>First name:</h2>
                             <input
+                                className="name"
                                 type="text"
                                 name="name"
                                 onChange={onChange}
                                 value={values.name}
+                                placeholder="Please enter your first name"
                             />
                         </label>
                         <p>{errors.name}</p>
@@ -36,10 +38,12 @@ export default function LoginForm(props) {
                         <label>
                             <h2>Email:</h2>
                             <input
+                                className="email"
                                 type="email"
                                 name="email"
                                 onChange={onChange}
                                 value={values.email}
+                                placeholder="Please enter your email"
                             />
                         </label>
                         <p>{errors.email}</p>
@@ -48,24 +52,27 @@ export default function LoginForm(props) {
                         <label>
                             <h2>Password:</h2>
                             <input
+                                className="password"
                                 type="password"
                                 name="password"
                                 onChange={onChange}
                                 value={values.password}
+                                placeholder="Please enter your password"
                             />
                         </label>
                         <p>{errors.password}</p>
                     </div>
-                    <div>
+                    <Idiv>
+                        <h4>Are you an instructor?</h4>
                         <label>
-                            <h4>Are you an instructor?</h4>
                             <input
+                                className="instructor"
                                 onChange={onChange}
                                 value={values.instructor}
                                 name="instructor"
                                 type="checkbox"></input>
                         </label>
-                    </div>
+                    </Idiv>
                     <div>
                         <ButtonStyle type="submit" disabled={disabled}>
                             Create Account
@@ -134,7 +141,7 @@ const ButtonStyle = styled.button`
         font-family: "Montserrat", sans-serif;
         display: block;
         margin-top: 1rem;
-    } 
+    }
 `;
 
 const FormDiv = styled.div`
@@ -145,7 +152,7 @@ const FormDiv = styled.div`
     padding: 2rem;
     border: 1px solid rgba(82, 45, 128, 0.6);
 
-    input {
+    /* input {
         width: 100%;
         height: 2.5rem;
         border-radius: 4px;
@@ -153,7 +160,7 @@ const FormDiv = styled.div`
         box-sizing: border-box;
         border: 0.5px solid rgba(82, 45, 128, 0.5);
         font-family: "Montserrat", sans-serif;
-    }
+    } */
 
     h2 {
         opacity: 40%;
@@ -176,5 +183,60 @@ const FormDiv = styled.div`
         font-size: 1.15rem;
         font-family: "Montserrat", sans-serif;
         text-align: center;
+    }
+
+    .name {
+        width: 100%;
+        height: 2.5rem;
+        border-radius: 4px;
+        padding-left: 0.75rem;
+        box-sizing: border-box;
+        border: 0.5px solid rgba(82, 45, 128, 0.5);
+        font-family: "Montserrat", sans-serif;
+    }
+
+    .email {
+        width: 100%;
+        height: 2.5rem;
+        border-radius: 4px;
+        padding-left: 0.75rem;
+        box-sizing: border-box;
+        border: 0.5px solid rgba(82, 45, 128, 0.5);
+        font-family: "Montserrat", sans-serif;
+    }
+
+    .password {
+        width: 100%;
+        height: 2.5rem;
+        border-radius: 4px;
+        padding-left: 0.75rem;
+        box-sizing: border-box;
+        border: 0.5px solid rgba(82, 45, 128, 0.5);
+        font-family: "Montserrat", sans-serif;
+    }
+`;
+
+const Idiv = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    input {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 4px;
+        padding-left: 10rem;
+
+        border: 0.5px solid rgba(82, 45, 128, 0.5);
+        font-family: "Montserrat", sans-serif;
+    }
+
+    h4 {
+        opacity: 40%;
+        margin-bottom: 0.75rem;
+        font-size: 1.15rem;
+        font-family: "Montserrat", sans-serif;
+        text-align: center;
+        padding-right: 2rem;
     }
 `;
