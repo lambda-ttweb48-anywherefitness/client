@@ -16,6 +16,7 @@ import PrivateRoute from './utils/PrivateRoute';
 
 import ClientDashboard from './components/client/dashboard';
 import Search from './components/client/Search';
+import IDashboard from './components/instructorDB/instructorDB'
 
 
 const Container = styled.div`
@@ -42,7 +43,7 @@ function App() {
                         ?
                         <PrivateRoute path="/dashboard" component={ ClientDashboard }/>
                         :
-                        <PrivateRoute path="/dashboard" component={ ClientDashboard }/> //instructor dash once craig merges with main
+                        <PrivateRoute path="/dashboard" component={ IDashboard }/> //instructor dash once craig merges with main
                     }
                     <Route path="/search" component={ Search }/>
                     <Route path='/createpass' component={CreatePassCard} />
