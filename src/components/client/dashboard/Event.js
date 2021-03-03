@@ -32,15 +32,15 @@ export default function Event( { details } ){
     <ClassCard>
         <ClassInfo>
             <ul>
-                <li><span><img src={editIcon} alt={editIcon}/></span>{ capitalizeString(details.name) }</li>
+                <li><span><img src={editIcon} alt={editIcon}/></span>{ capitalizeString(details.class_name) }</li>
                 <li><span><img src={userIcon} alt={userIcon}/></span>{ capitalizeString(details.instructor) }</li>
-                <li><span><img src={pinIcon} alt={pinIcon}/></span>{ capitalizeString(details.location) }</li>
+                <li><span><img src={pinIcon} alt={pinIcon}/></span>{ capitalizeString(details.class_location) }</li>
             </ul>
         </ClassInfo>
         <ClassTime>
-            <h2>{ FormatDate(details.start) }</h2>
+            <h2>{ FormatDate(details.class_start) }</h2>
             <div className="card-links">
-                <Link to='/dashboard' onClick={ () => cancelReservation(details.id) }>Cancel Reservation</Link>
+                <Link to='/dashboard' onClick={ () => cancelReservation(details.reservation_id) }>Cancel Reservation</Link>
             </div>
         </ClassTime>
     </ClassCard>
