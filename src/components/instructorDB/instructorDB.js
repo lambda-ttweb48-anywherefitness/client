@@ -2,14 +2,17 @@ import React, { useEffect, useState, useContext } from 'react'
 import styled from 'styled-components'
 import {useHistory} from 'react-router-dom'
 
+
 import editIcon from '../../assets/images/icons/edit.png'
 import clockIcon from '../../assets/images/icons/clock.png'
 import activityIcon from  '../../assets/images/icons/activity.png'
 import locIcon from '../../assets/images/icons/pin.png'
+
 import { UserContext } from "../../utils/UserContext.js";
 
 
 import { axiosWithAuth } from "../../utils/axiosWithAuth.js";
+
 
 
 
@@ -78,6 +81,7 @@ height: 78px;
 left: 908px;
 top: 254px;
 
+
 background-color:#522D80;
     border:none;
     color:#FFFFFF;
@@ -97,7 +101,6 @@ background-color:#522D80;
     &:focus{
         outline:none;
     }
-
 
 
 `
@@ -128,6 +131,7 @@ background-color:#522D80;
         outline:none;
     }
 `
+
 const StyledClasses  = styled.div`
 position: absolute;
 width: 1650px;
@@ -192,8 +196,10 @@ export default function IDashboard( props ){
     const [classes, setClasses] = useState([]);
     const {user} = useContext(UserContext);
     const history = useHistory()
+
     const handleClick1 = () => history.push('/createclass')
     const handleClick2 = () => history.push('/createpass')
+
 
     useEffect( ()  => {
         axiosWithAuth()

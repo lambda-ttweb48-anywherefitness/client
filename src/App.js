@@ -7,8 +7,11 @@ import Header from './components/header';
 
 import Login from "./components/Login/Login.js";
 import Register from "./components/Register/Register.js";
+import IDashboard from "./components/instructorDB/instructorDB"
+
 import CreateClass from './components/CreateClass/CreateClass';
 import CreatePassCard from './components/CreatePassCard/CreatePassCard.js';
+
 
 import { UserContext } from "./utils/UserContext";
 import { useProfile } from "./utils/useProfile";
@@ -16,7 +19,6 @@ import PrivateRoute from './utils/PrivateRoute';
 
 import ClientDashboard from './components/client/dashboard';
 import Search from './components/client/Search';
-import IDashboard from './components/instructorDB/instructorDB'
 
 
 const Container = styled.div`
@@ -27,7 +29,7 @@ const Container = styled.div`
 
 function App() {
     const [user, setUser] = useProfile();
-
+  
     return <div className="App">
         <UserContext.Provider value={{ user, setUser }}>
             <Header />
@@ -52,6 +54,7 @@ function App() {
         </UserContext.Provider>
 
     </div>;
+
 }
 
 export default App;
