@@ -18,7 +18,7 @@ export default function LoginForm(props) {
 
     return (
         <div>
-            <H1style>Create Account</H1style>
+            <H1style>Login</H1style>
             <FormDiv>
                 <form onSubmit={onSubmit}>
                     <div>
