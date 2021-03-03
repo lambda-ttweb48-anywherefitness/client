@@ -39,7 +39,6 @@ export default function Register() {
                 setUser(res.data.Profile);
                 setFormValues(initialFormValues);
                 localStorage.setItem("token", res.data.token);
-                console.log(res.data.profile)
                 history.push("/login")    
             })
             .catch((err) => {

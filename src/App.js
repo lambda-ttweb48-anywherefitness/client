@@ -7,6 +7,8 @@ import Header from './components/header';
 
 import Login from "./components/Login/Login.js";
 import Register from "./components/Register/Register.js";
+import CreateClass from './components/CreateClass/CreateClass';
+import CreatePassCard from './components/CreatePassCard/CreatePassCard.js';
 
 import { UserContext } from "./utils/UserContext";
 import { useProfile } from "./utils/useProfile";
@@ -33,7 +35,14 @@ function App() {
                 <Switch>
                     <Route exact path="/login" component={Login} />
                     <Route path="/register" component={Register} />
-                    <PrivateRoute path="/dashboard" component={ ClientDashboard }/>
+
+                    {
+                        user.instructor === false 
+                        ?
+                        <PrivateRoute path="/dashboard" component={ ClientDashboard }/>
+                        :
+                        <PrivateRoute path="/dashboard" component={ ClientDashboard }/> //instructor dash once craig merges with main
+                    }
                     <Route path="/search" component={ Search }/>
                 </Switch>
             </Container>

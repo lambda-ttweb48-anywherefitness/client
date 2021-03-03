@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import * as Yup from "yup";
 
+
 import Schema from "./LoginSchema.js";
 import { UserContext } from "../../utils/UserContext.js";
 import LoginForm from "./LoginForm.js";
@@ -87,9 +88,9 @@ export default function Login() {
                     submit={submitForm}
                 />
             </div>
-            <button>
-                <a href="/register">Don't have an account? Create one here!</a>
-            </button>
+            
         </div>
     );
 }
+
+
