@@ -36,7 +36,6 @@ function App() {
                     <Route exact path="/login" component={Login} />
                     <Route path="/register" component={Register} />
                     <Route path='/createclass' component={CreateClass} />
-                    <Route path='/createpass' component={CreatePassCard} />
 
                     {
                         user.instructor === false 
@@ -46,6 +45,7 @@ function App() {
                         <PrivateRoute path="/dashboard" component={ ClientDashboard }/> //instructor dash once craig merges with main
                     }
                     <Route path="/search" component={ Search }/>
+                    <Route path='/createpass' component={CreatePassCard} />
                 </Switch>
             </Container>
         </UserContext.Provider>
