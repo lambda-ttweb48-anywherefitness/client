@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 export default function LoginForm(props) {
-    const { disabled, values, change, submit, errors } = props;
+    const { disabled, values, change, submit, errors, serverErrors } = props;
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -20,6 +20,7 @@ export default function LoginForm(props) {
             <H1style>Create Account</H1style>
             <FormDiv>
                 <form onSubmit={onSubmit}>
+                    <p>{serverErrors.err} </p>
                     <div>
                         <label>
                             <h2>First name:</h2>
@@ -110,6 +111,8 @@ const ButtonStyle = styled.button`
     font-family: "Montserrat", sans-serif;
     display: block;
     margin-top: 1rem;
+    box-shadow: none;
+    transition: .2s color, border, box-shadow;
 
     :hover {
         width: 100%;
@@ -121,10 +124,12 @@ const ButtonStyle = styled.button`
         background-color: #522d80;
         color: black;
         font-size: 1rem;
-        border: 0.5px solid rgba(82, 45, 128, 0.5);
+        border: 2px solid black;
         font-family: "Montserrat", sans-serif;
         display: block;
         margin-top: 1rem;
+        transition-delay: 0.1s;
+        box-shadow: 1px 1px;
     }
 
     :disabled {
@@ -141,6 +146,7 @@ const ButtonStyle = styled.button`
         font-family: "Montserrat", sans-serif;
         display: block;
         margin-top: 1rem;
+        box-shadow: none;
     }
 `;
 

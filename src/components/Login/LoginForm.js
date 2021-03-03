@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export default function LoginForm(props) {
-    const { disabled, values, change, submit, errors } = props;
+    const { disabled, values, change, submit, errors, serverErrors } = props;
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -18,9 +18,10 @@ export default function LoginForm(props) {
 
     return (
         <div>
-            <H1style>Create Account</H1style>
+            <H1style>Login</H1style>
             <FormDiv>
                 <form onSubmit={onSubmit}>
+                    <p>{serverErrors.err} </p>
                     <div>
                         <label>
                             <h2>Email:</h2>
@@ -117,6 +118,8 @@ const FormDiv = styled.div`
         font-family: "Montserrat", sans-serif;
         display: block;
         margin-top: 1rem;
+        box-shadow: none;
+        transition: 0.2s color, border, box-shadow;
     }
 
     button:hover {
@@ -129,10 +132,12 @@ const FormDiv = styled.div`
         background-color: #522d80;
         color: black;
         font-size: 1rem;
-        border: 0.5px solid rgba(82, 45, 128, 0.5);
+        border: 2px solid black;
         font-family: "Montserrat", sans-serif;
         display: block;
-        margin-top: 1rem;  
+        margin-top: 1rem;
+        transition-delay: 0.1s;
+        box-shadow: 1px 1px;
     }
 
     button:disabled {
@@ -149,5 +154,6 @@ const FormDiv = styled.div`
         font-family: "Montserrat", sans-serif;
         display: block;
         margin-top: 1rem;
-    } 
+        box-shadow: none;
+    }
 `;

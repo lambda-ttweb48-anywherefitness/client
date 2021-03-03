@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import * as Yup from "yup";
 
-
 import Schema from "./LoginSchema.js";
 import { UserContext } from "../../utils/UserContext.js";
 import LoginForm from "./LoginForm.js";
@@ -18,11 +17,16 @@ const initialFormErrors = {
     password: "",
 };
 
+const initialServerErrors = {
+    err: "",
+};
+
 const buttonDisabled = true;
 
 export default function Login() {
     const [buttonDisable, setButtonDisable] = useState(buttonDisabled);
     const [formValues, setFormValues] = useState(initialFormValues);
+    const [serverErrors, setServerErrors] = useState(initialServerErrors);
     const [errors, setErrors] = useState(initialFormErrors);
     const { setUser } = useContext(UserContext);
     const history = useHistory();
@@ -33,11 +37,13 @@ export default function Login() {
             .then((res) => {
                 setUser(res.data.Profile);
                 localStorage.setItem("token", res.data.token);
+                console.log( res.data );
                 setFormValues(initialFormValues);
                 history.push("/dashboard");
             })
             .catch((err) => {
-                console.log(err.res);
+                // console.log("error", err.response.data);
+                setServerErrors({ err: err.response.data.message });
             });
     };
 
@@ -86,11 +92,10 @@ export default function Login() {
                     change={changes}
                     errors={errors}
                     submit={submitForm}
+                    serverErrors={serverErrors}
                 />
             </div>
-            
+
         </div>
     );
 }
-
-
