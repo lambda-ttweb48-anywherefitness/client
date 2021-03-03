@@ -17,11 +17,16 @@ const initialFormErrors = {
     password: "",
 };
 
+const initialServerErrors = {
+    err: "",
+};
+
 const buttonDisabled = true;
 
 export default function Login() {
     const [buttonDisable, setButtonDisable] = useState(buttonDisabled);
     const [formValues, setFormValues] = useState(initialFormValues);
+    const [serverErrors, setServerErrors] = useState(initialServerErrors);
     const [errors, setErrors] = useState(initialFormErrors);
     const { setUser } = useContext(UserContext);
     const history = useHistory();
@@ -37,7 +42,8 @@ export default function Login() {
                 history.push("/dashboard");
             })
             .catch((err) => {
-                console.log(err.res);
+                // console.log("error", err.response.data);
+                setServerErrors({ err: err.response.data.message });
             });
     };
 
@@ -86,11 +92,10 @@ export default function Login() {
                     change={changes}
                     errors={errors}
                     submit={submitForm}
+                    serverErrors={serverErrors}
                 />
             </div>
-            <button>
-                <a href="/register">Don't have an account? Create one here!</a>
-            </button>
+
         </div>
     );
 }
