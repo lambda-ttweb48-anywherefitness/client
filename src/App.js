@@ -22,9 +22,10 @@ import Search from './components/client/Search';
 
 
 const Container = styled.div`
-    width:100%;
+    width:60%;
     height:100vh;
     margin:auto;
+    margin-top:2%;
 `
 
 function App() {
@@ -34,24 +35,23 @@ function App() {
         <UserContext.Provider value={{ user, setUser }}>
             <Header />
             
-            <Container>
                 <Switch>
                     <Route exact path="/" component={Home} />
-                    <Route exact path="/login" component={Login} />
-                    <Route path="/register" component={Register} />
-                    <Route path='/createclass' component={CreateClass} />
-
-                    {
-                        user.instructor === false 
-                        ?
-                        <PrivateRoute path="/dashboard" component={ ClientDashboard }/>
-                        :
-                        <PrivateRoute path="/dashboard" component={ IDashboard }/> //instructor dash once craig merges with main
-                    }
-                    <Route path="/search" component={ Search }/>
-                    <Route path='/createpass' component={CreatePassCard} />
+                    <Container>
+                            <Route exact path="/login" component={Login} />
+                            <Route path="/register" component={Register} />
+                            <PrivateRoute path='/createclass' component={CreateClass} />
+                            <PrivateRoute path='/createpass' component={CreatePassCard} />
+                            {
+                                user.instructor === false 
+                                ?
+                                <PrivateRoute path="/dashboard" component={ ClientDashboard }/>
+                                :
+                                <PrivateRoute path="/dashboard" component={ IDashboard }/> //instructor dash once craig merges with main
+                            }
+                            <Route path="/search" component={ Search }/>
+                    </Container>
                 </Switch>
-            </Container>
         </UserContext.Provider>
 
     </div>;

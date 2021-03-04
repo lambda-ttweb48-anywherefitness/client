@@ -7,7 +7,7 @@ import { axiosWithAuth } from "../../utils/axiosWithAuth.js";
 
 import * as Yup from 'yup';
 import Schema from './createClassSchema';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 
 function CreateClass() {
@@ -89,6 +89,7 @@ function CreateClass() {
         <div>
             <H1>Create Class</H1>
             <CreateClassForm>
+            <Link to='' onClick={ () => history.goBack() }>{'<Back'}</Link>
                 <form onSubmit={onSubmit}>
                 <div>
                     <label>
@@ -250,17 +251,31 @@ const CreateClassForm = styled.div`
 
 
     .createClassBtn{
-        width: 100%;
-        height: 2.75rem;
-        border-radius: 4px;
-        outline: none;
-        margin-top: 2rem;
-        text-transform: uppercase;
-        background-color: #522D80;
-        color: white;  
-        font-size: 1rem;  
-        border: .5px solid rgba(82, 45, 128, 0.5);
-        font-family: 'Montserrat', sans-serif;
+        background-color:#522D80;
+        border:none;
+        color:#FFFFFF;
+        font-size:1rem;
+        font-weight:600;
+        padding:15px 75px 15px 75px;
+        border-radius:10px;
+        box-sizing:border-box;
+        margin-top:20px;
+        text-transform:uppercase;
+        width:100%;
+
+        &:hover{
+            opacity:0.7;
+        }
+        &:active{
+            outline:none;
+            background:#694991;
+        }
+        &:focus{
+            outline:none;
+        }
+        &:disabled{
+            opacity:0.3;
+        }
     }
 
     .datePicker{
@@ -281,7 +296,7 @@ const CreateClassForm = styled.div`
 
 
     .name{
-        margin-top: -.15rem
+        margin-top: 20px;
     }
 
     .inputValue {
@@ -299,4 +314,12 @@ const CreateClassForm = styled.div`
         color: rgba(82, 45, 128, 0.5)
     }
    
+
+    & > a{
+        text-decoration:none;
+        font-size:1.4rem;
+    }
+    & > a:hover{
+        opacity:0.7;
+    }
 `

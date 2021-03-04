@@ -63,7 +63,7 @@ const ClassButton = styled.button`
     box-sizing:border-box;
 
     &:hover{
-        background-color:#7b55a9;
+        opacity:0.7;
     }
     &:active{
         outline:none;

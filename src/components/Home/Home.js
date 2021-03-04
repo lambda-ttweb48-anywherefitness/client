@@ -26,15 +26,10 @@ export default function Home(){
 
 const HomeBackground = styled.div`
 
-    background: linear-gradient(0deg, rgba(103,92,100,0.5) 0%, rgba(245,240,250,0.7) 100%);
-    /* background-size: cover;
-    background-position: center;
-    background-image: url(${backdrop});
-    background-blend-mode: lighten;     */
-    /* background-color: #f9f1f1; */
+    background: linear-gradient(0deg, rgba(103,92,100,0.5) 0%, rgba(255,255,255,0.7) 100%);
     padding-top: 2.5%;
     width: 100%;
-    height: 100%;
+    height: 100vh;
 
 `
 
@@ -63,23 +58,26 @@ const H1style = styled.h1`
 `
 
 const ButtonStyle = styled.button`
-     
-        width: 100%;
-        height: 2.75rem;
-        border-radius: 4px;
-        outline: none;
-        margin: auto;
-        text-transform: uppercase;
-        background-color: #522d80;
-        color: white;
-        font-size: 1rem;
-        border: 0.5px solid rgba(82, 45, 128, 0.5);
-        font-family: "Montserrat", sans-serif;
-        display: block;
-        margin-top: 1rem;
-        
-    
-    :hover {
-        color: black;
+    background-color:#522D80;
+    width:100%;
+    margin-top: 1rem;
+    border:none;
+    color:#FFFFFF;
+    font-size:1rem;
+    font-weight:600;
+    letter-spacing: 0.9375px;
+    padding:15px 75px 15px 75px;
+    border-radius:10px;
+    box-sizing:border-box;
+
+    &:hover{
+        opacity:0.7;
+    }
+    &:active{
+        outline:none;
+        background:#694991;
+    }
+    &:focus{
+        outline:none;
     }
 `

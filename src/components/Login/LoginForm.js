@@ -49,18 +49,43 @@ export default function LoginForm(props) {
                         <p>{errors.password}</p>
                     </div>
                     <div></div>
-                    <button type="submit" disabled={disabled}>
+                    <StyledBtn type="submit" disabled={disabled}>
                         Login
-                    </button>
+                    </StyledBtn>
                 </form>
                 <Link to="/register">
-                    <button>Don't have an account? Create one here!</button>
+                    <StyledBtn>Don't have an account? Create one here!</StyledBtn>
                 </Link>
             </FormDiv>
         </div>
     );
 }
+const StyledBtn = styled.button`
+    background-color:#522D80;
+    border:none;
+    color:#FFFFFF;
+    font-size:1rem;
+    font-weight:600;
+    padding:15px 75px 15px 75px;
+    border-radius:10px;
+    box-sizing:border-box;
+    margin-bottom:20px;
+    width:100%;
 
+    &:hover{
+        opacity:0.7;
+    }
+    &:active{
+        outline:none;
+        background:#694991;
+    }
+    &:focus{
+        outline:none;
+    }
+    &:disabled{
+        opacity:0.3;
+    }
+`
 const H1style = styled.h1`
     font-family: Montserrat;
     font-style: normal;
@@ -78,7 +103,9 @@ const FormDiv = styled.div`
     width: 30%;
     border-radius: 8px;
     margin: auto;
-    padding: 2rem;
+    padding-top: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
     border: 1px solid rgba(82, 45, 128, 0.6);
 
     input {
@@ -103,57 +130,5 @@ const FormDiv = styled.div`
         font-size: 1.15rem;
         font-family: "Montserrat", sans-serif;
         color: red;
-    }
-    button {
-        width: 100%;
-        height: 2.75rem;
-        border-radius: 4px;
-        outline: none;
-        margin: auto;
-        text-transform: uppercase;
-        background-color: #522d80;
-        color: white;
-        font-size: 1rem;
-        border: 0.5px solid rgba(82, 45, 128, 0.5);
-        font-family: "Montserrat", sans-serif;
-        display: block;
-        margin-top: 1rem;
-        box-shadow: none;
-        transition: 0.2s color, border, box-shadow;
-    }
-
-    button:hover {
-        width: 100%;
-        height: 2.75rem;
-        border-radius: 4px;
-        outline: none;
-        margin: auto;
-        text-transform: uppercase;
-        background-color: #522d80;
-        color: black;
-        font-size: 1rem;
-        border: 2px solid black;
-        font-family: "Montserrat", sans-serif;
-        display: block;
-        margin-top: 1rem;
-        transition-delay: 0.1s;
-        box-shadow: 1px 1px;
-    }
-
-    button:disabled {
-        width: 100%;
-        height: 2.75rem;
-        border-radius: 4px;
-        outline: none;
-        margin: auto;
-        text-transform: uppercase;
-        background-color: #6b6670;
-        color: grey;
-        font-size: 1rem;
-        border: 0.5px solid rgba(82, 45, 128, 0.5);
-        font-family: "Montserrat", sans-serif;
-        display: block;
-        margin-top: 1rem;
-        box-shadow: none;
     }
 `;

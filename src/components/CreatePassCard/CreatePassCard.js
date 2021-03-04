@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 import { axiosWithAuth } from "../../utils/axiosWithAuth.js";
 import * as Yup from 'yup';
@@ -68,6 +68,7 @@ function CreatePassCard() {
 
     return (
         <CreatePassForm>
+            <Link to='' onClick={ () => history.goBack() }>{'<Back'}</Link>
             <form onSubmit={onSubmit}>
                 <h3 className='explainText'>
                     Allow clients to join your <br></br>workouts at their convenience
@@ -177,17 +178,31 @@ const CreatePassForm = styled.div`
     }
 
     .createPassCardBtn{
-        width: 100%;
-        height: 2.75rem;
-        border-radius: 4px;
-        outline: none;
-        margin-top: 2rem;
-        text-transform: uppercase;
-        background-color: #522D80;
-        color: white;  
-        font-size: 1rem;  
-        border: .5px solid rgba(82, 45, 128, 0.5);
-        font-family: 'Montserrat', sans-serif;
+        background-color:#522D80;
+        border:none;
+        color:#FFFFFF;
+        font-size:1rem;
+        font-weight:600;
+        padding:15px 75px 15px 75px;
+        border-radius:10px;
+        box-sizing:border-box;
+        margin-top:20px;
+        text-transform:uppercase;
+        width:100%;
+
+        &:hover{
+            opacity:0.7;
+        }
+        &:active{
+            outline:none;
+            background:#694991;
+        }
+        &:focus{
+            outline:none;
+        }
+        &:disabled{
+            opacity:0.3;
+        }
     }
 
     .inputValue {
@@ -205,6 +220,13 @@ const CreatePassForm = styled.div`
         color: rgba(82, 45, 128, 0.5)
     }
 
+    & > a{
+        text-decoration:none;
+        font-size:1.4rem;
+    }
+    & > a:hover{
+        opacity:0.7;
+    }
 
 
 `

@@ -96,60 +96,32 @@ const H1style = styled.h1`
     color: #434343;
     opacity: 0.4;
 `;
-
 const ButtonStyle = styled.button`
-    width: 100%;
-    height: 2.75rem;
-    border-radius: 4px;
-    outline: none;
-    margin: auto;
-    text-transform: uppercase;
-    background-color: #522d80;
-    color: white;
-    font-size: 1rem;
-    border: 0.5px solid rgba(82, 45, 128, 0.5);
-    font-family: "Montserrat", sans-serif;
-    display: block;
-    margin-top: 1rem;
-    box-shadow: none;
-    transition: .2s color, border, box-shadow;
+    background-color:#522D80;
+    border:none;
+    color:#FFFFFF;
+    font-size:1rem;
+    font-weight:600;
+    padding:15px 75px 15px 75px;
+    border-radius:10px;
+    box-sizing:border-box;
+    margin-top:20px;
+    width:100%;
 
-    :hover {
-        width: 100%;
-        height: 2.75rem;
-        border-radius: 4px;
-        outline: none;
-        margin: auto;
-        text-transform: uppercase;
-        background-color: #522d80;
-        color: black;
-        font-size: 1rem;
-        border: 2px solid black;
-        font-family: "Montserrat", sans-serif;
-        display: block;
-        margin-top: 1rem;
-        transition-delay: 0.1s;
-        box-shadow: 1px 1px;
+    &:hover{
+        opacity:0.7;
     }
-
-    :disabled {
-        width: 100%;
-        height: 2.75rem;
-        border-radius: 4px;
-        outline: none;
-        margin: auto;
-        text-transform: uppercase;
-        background-color: #6b6670;
-        color: grey;
-        font-size: 1rem;
-        border: 0.5px solid rgba(82, 45, 128, 0.5);
-        font-family: "Montserrat", sans-serif;
-        display: block;
-        margin-top: 1rem;
-        box-shadow: none;
+    &:active{
+        outline:none;
+        background:#694991;
     }
-`;
-
+    &:focus{
+        outline:none;
+    }
+    &:disabled{
+        opacity:0.3;
+    }
+`
 const FormDiv = styled.div`
     background-color: rgba(82, 45, 128, 0.08);
     width: 30%;
@@ -157,16 +129,6 @@ const FormDiv = styled.div`
     margin: auto;
     padding: 2rem;
     border: 1px solid rgba(82, 45, 128, 0.6);
-
-    /* input {
-        width: 100%;
-        height: 2.5rem;
-        border-radius: 4px;
-        padding-left: 0.75rem;
-        box-sizing: border-box;
-        border: 0.5px solid rgba(82, 45, 128, 0.5);
-        font-family: "Montserrat", sans-serif;
-    } */
 
     h2 {
         opacity: 40%;

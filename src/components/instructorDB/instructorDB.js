@@ -17,75 +17,97 @@ import FormatDate from '../../utils/FormatDate';
 import { capitalizeString } from '../../utils/'
 
 
+export default function IDashboard( props ){
+    const [classes, setClasses] = useState([]);
+    const {user} = useContext(UserContext);
+    const history = useHistory()
+
+    const handleClick1 = () => history.push('/createclass')
+    const handleClick2 = () => history.push('/createpass')
 
 
+    useEffect( ()  => {
+        axiosWithAuth()
+            .get("https://anywherefitness-server.herokuapp.com/dash/classes" )
+            .then((res) => {
+                setClasses(res.data);
+            })
+            .catch((err) => {
+                console.log(err.res);
+            });
+        
+    }, [])
+
+    
+    return (
+        <div>
+            <Heading>
+                <Greeting>Hello { user.name }</Greeting>
+                <div>
+                    <ClassButton onClick={handleClick2}>Create Passcard</ClassButton>
+                    <ClassButton onClick={handleClick1}>Create Class</ClassButton>
+                </div>
+            </Heading>
+
+            <Container>
+                <ContentBox>
+                    <Title>Upcoming Events</Title>
+                    <Content>
+                        {
+                        classes.map( item => {
+                        
+                            return (
+                                <SearchCard>
+                                    <MainCard>
+                                        <SearchInfo>
+                                        <ul>
+                                            <li><span><img src={editIcon} alt={editIcon}/></span>{ capitalizeString(item.name) }</li>
+                                            <li><span><img src={editIcon} alt={editIcon}/></span>{ capitalizeString(item.type) } </li>
+                                            <li><span><img src={locIcon} alt={locIcon}/></span>{ capitalizeString(item.location) }</li>
+                                            <li><span><img src={clockIcon} alt={clockIcon}/></span>{ item.duration } Minutes</li>
+                                            <li><span><img src={activityIcon} alt={activityIcon}/></span>{ capitalizeString(item.intensity) }</li>
+                                        </ul>
+                                        </SearchInfo>
+                                        <SearchTime>
+                                            <h2>{ FormatDate(item.start) }</h2>
+                                        </SearchTime>
+                                    </MainCard>
+
+                                    <CtaBtns>
+                                        <JoinBtn>Edit</JoinBtn>
+                                    </CtaBtns>
+                                </SearchCard>
+                                    )
+                        })
+                        }
+                    </Content>
+                </ContentBox>
+
+                <PassCards />
+            </Container>
+        </div>
+    );
+}
 
 
-
-const StyledContainer = styled.div`
-/* position: absolute; */
-width: 1855px;
-height: 1800px;
-left: 0px;
-top: 0px;
-
-
-background: #FFFFFF;
-mix-blend-mode: normal;
-opacity: 0.8;
+const Heading = styled.div`
+    border-bottom:1px solid #522D80;
+    padding:20px;
+    box-sizing:border-box;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
 `
-const StyledEvents = styled.h3`
-    position: absolute;
-width: 478px;
-height: 34px;
-left: 132px;
-top: 420px;
-
-font-family: Montserrat;
-font-style: normal;
-font-weight: 600;
-font-size: 36px;
-line-height: 44px;
-text-align: center;
-letter-spacing: 3.69231px;
-
-color: #434343;
-
-opacity: 0.4; 
-
+const Greeting = styled.h2`
+    font-weight:600;
+    color:#434343;
+    letter-spacing:3.69231;
+    opacity: 0.6;
+    font-size:1.8rem;
 `
 
-const StyledInfo = styled.div`
-
-`
-const StyledName=styled.h2`
-    position: absolute;
-width: 533px;
-height: 56px;
-left: 28px;
-top: 240px;
-
-font-family: Montserrat;
-font-style: normal;
-font-weight: 600;
-font-size: 50px;
-line-height: 61px;
-text-align: center;
-letter-spacing: 3.69231px;
-
-color: #434343;
-
-opacity: 0.6; 
-`
-const StyledButton1 = styled.button`
-    position: absolute;
-width: 389px;
-height: 78px;
-left: 908px;
-top: 254px;
-
-
-background-color:#522D80;
+const ClassButton = styled.button`
+    background-color:#522D80;
     border:none;
     color:#FFFFFF;
     font-size:1rem;
@@ -94,8 +116,14 @@ background-color:#522D80;
     padding:15px 75px 15px 75px;
     border-radius:10px;
     box-sizing:border-box;
+    margin-left:20px;
+
+    :first-child{
+        margin-left:0;
+    }
+
     &:hover{
-        background-color:#7b55a9;
+        opacity:0.7;
     }
     &:active{
         outline:none;
@@ -104,79 +132,90 @@ background-color:#522D80;
     &:focus{
         outline:none;
     }
-
-
 `
-const StyledButton2 = styled.button`
-position: absolute;
-width: 389px;
-height: 78px;
-left: 1328px;
-top: 254px;
+const Container = styled.div`
+    margin-top:3%;
+    margin-bottom:5%;
+`
 
-background-color:#522D80;
-    border:none;
-    color:#FFFFFF;
-    font-size:1rem;
+
+const ContentBox = styled.div`
+    margin-bottom:5%;
+`
+
+const Title = styled.h2`
+    font-size:1.5rem;
+    text-transform:uppercase;
     font-weight:600;
-    letter-spacing: 0.9375px;
-    padding:15px 75px 15px 75px;
+    letter-spacing:3.69231;
+    color:#434343;
+    opacity:0.4;
+    margin-left:15px;
+    margin-bottom:20px;
+`
+
+const Content = styled.div`
+    background-color:#F2EFF5;
+    min-height:100px;
+    border:1px solid #B8B8B8;
     border-radius:10px;
+    padding:30px 100px;
     box-sizing:border-box;
-    &:hover{
-        background-color:#7b55a9;
-    }
-    &:active{
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+`
+
+const CtaBtns = styled.div`
+    border-top:1px solid #522D80;
+    margin-top:20px;
+    padding-top:20px;
+    box-sizing:border-box;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+`
+const JoinBtn = styled.button`
+    background:white;
+    border:none;
+    color: #522D80;
+    font-weight:600;
+    font-size:1rem;
+
+    :active{
+        border:none;
         outline:none;
-        background:#694991;
     }
-    &:focus{
+    :focus{
+        border:none;
         outline:none;
     }
+    :hover{
+        opacity:0.6;
+    }
+
 `
-
-const StyledClasses  = styled.div`
-position: absolute;
-width: 1650px;
-
-left: 103px;
-top: 507px;
-
-background: rgba(82, 45, 128, 0.08);
-border: 1px solid #B8B8B8;
-box-sizing: border-box;
-border-radius: 10px;
+const MainCard = styled.div`
+    display:flex;
+    justify-content:space-between;
 `
-const StyledLine = styled.hr`
-position: absolute;
-width: 1602.04px;
-height: 0px;
-left: 117.98px;
-top: 360px;
-
-
-border: 1px solid #522D80;
-`
-
-const StyledClassCard = styled.div`
-/* position: absolute; */
-background: #FFFFFF;
+const SearchCard = styled.div`
+    background: #FFFFFF;
     border:1px solid #B8B8B8;
     box-sizing:border-box;
     border-radius:10px;
     padding:20px;
-    display:flex;
-    justify-content:space-between;
     margin-bottom:30px;
     font-weight:600;
     font-size:1.1rem;
     color:rgba(0,0,0,0.4);
+
     &:last-child{
         margin-bottom:0;
     }
 `
 
-const ClassInfo = styled.div`
+const SearchInfo = styled.div`
  & > ul > li{
      margin-bottom:20px;
  }
@@ -193,69 +232,11 @@ const ClassInfo = styled.div`
      display:flex;
      align-items:center;
  }
+
 `
-
-export default function IDashboard( props ){
-    const [classes, setClasses] = useState([]);
-    const {user} = useContext(UserContext);
-    const history = useHistory()
-
-    const handleClick1 = () => history.push('/createclass')
-    const handleClick2 = () => history.push('/createpass')
-
-
-    useEffect( ()  => {
-        axiosWithAuth()
-            .get("https://anywherefitness-server.herokuapp.com/dash/classes" )
-            .then((res) => {
-                setClasses(res.data);
-                // console.log(res.data);
-            })
-            .catch((err) => {
-                console.log(err.res);
-            });
-        
-    }, [])
-
-    
-    return (
-        <StyledContainer>
-
-            <StyledInfo>
-                <StyledName>Hello {user.name}</StyledName>
-                <StyledButton1 id="createPasscard" onClick={handleClick2}>Create Passcard</StyledButton1>
-                <StyledButton2 id="createClass" onClick={handleClick1}>Create Class</StyledButton2>
-                <StyledLine></StyledLine>
-            </StyledInfo>
-            
-            <StyledEvents>UPCOMING EVENTS</StyledEvents>
-            <StyledClasses className="classes">
-                {
-                    classes.map( item => {
-                    
-                        return (
-                            <StyledClassCard> 
-                                <ClassInfo>
-                                <ul>
-                                    <li><span><img src={editIcon}/></span>{ item.name } </li>
-                                    <li><span></span>{item.type} </li>
-                                    <li><span><img src={clockIcon}/></span>{item.duration}</li>
-                                    <li><span><img src={activityIcon}/></span>{item.intensity}</li>
-                                    <li><span><img src={locIcon}/></span>{capitalizeString(item.location)}</li>
-                                    <li><span></span>{FormatDate(item.start)}</li>
-                                    <li><span>edit</span></li>
-                                </ul>
-                                </ClassInfo>
-
-                            </StyledClassCard> )
-                    })
-                }
-
-                    
-            </StyledClasses>
-            <PassCards />
-
-            
-        </StyledContainer>
-    );
-}
+const SearchTime = styled.div`
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    justify-content:space-between;
+`

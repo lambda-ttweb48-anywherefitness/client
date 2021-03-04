@@ -18,39 +18,53 @@ export default function PassCards(props){
     }, [])
 
     return(
-        <StyledH3>Pass Cards
-        <PassCardContainer>
-            
-        {
-            passcard.map( item => {
-            
-                return( 
+        <ContentBox>
+            <Title>Pass Cards</Title>
+            <Content>            
+                {
+                    passcard.map( item => {
                     
-                        <StyledPassCard>
-                            <PassInfo>
-                                <ul>
-                                    <li>Total Class: {item.total_classes}</li>
-                                    <li>Price: {item.price}</li>
-                                </ul>
-                            </PassInfo>
-                        </StyledPassCard>
-
-                    
-                    
-                    
-                )
-                
-            })
-        }
-        </PassCardContainer>
-        </StyledH3>
+                        return( 
+                            
+                                <ClassCard>
+                                    <ClassInfo>
+                                        <ul>
+                                            <li>Total Class: {item.total_classes}</li>
+                                            <li>Price: {item.price}</li>
+                                        </ul>
+                                    </ClassInfo>
+                                </ClassCard>
+                        )
+                        
+                    })
+                }
+            </Content>
+        </ContentBox>
         
         
     )
 }
 
-const PassInfo = styled.div `
-& > ul > li{
+const ClassCard = styled.div`
+    background: #FFFFFF;
+    border:1px solid #B8B8B8;
+    box-sizing:border-box;
+    border-radius:10px;
+    padding:20px;
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:30px;
+    font-weight:600;
+    font-size:1.1rem;
+    color:rgba(0,0,0,0.4);
+
+    &:last-child{
+        margin-bottom:0;
+    }
+`
+
+const ClassInfo = styled.div`
+ & > ul > li{
      margin-bottom:20px;
  }
  & > ul > li:last-child{
@@ -66,56 +80,31 @@ const PassInfo = styled.div `
      display:flex;
      align-items:center;
  }
+
 `
-const StyledPassCard = styled.div `
-background: #FFFFFF;
-    border:1px solid #B8B8B8;
-    box-sizing:border-box;
-    border-radius:10px;
-    padding:20px;
-    display:flex;
-    justify-content:space-between;
-    margin-bottom:30px;
+const ContentBox = styled.div`
+    margin-bottom:5%;
+`
+
+const Title = styled.h2`
+    font-size:1.5rem;
+    text-transform:uppercase;
     font-weight:600;
-    font-size:1.1rem;
-    color:rgba(0,0,0,0.4);
-    &:last-child{
-        margin-bottom:0;
-    }
-`
-const PassCardContainer = styled.div `
-width: 1650px;
-
-left: 103px;
-top: 507px;
-
-background: rgba(82, 45, 128, 0.08);
-border: 1px solid #B8B8B8;
-box-sizing: border-box;
-border-radius: 10px;
+    letter-spacing:3.69231;
+    color:#434343;
+    opacity:0.4;
+    margin-left:15px;
+    margin-bottom:20px;
 `
 
-
-
-
-`
-
-const StyledH3 = styled.h3 `
-width: 478px;
-height: 34px;
-left: 132px;
-top: 420px;
-
-font-family: Montserrat;
-font-style: normal;
-font-weight: 600;
-font-size: 36px;
-line-height: 44px;
-text-align: center;
-letter-spacing: 3.69231px;
-
-color: #434343;
-
-opacity: 0.4; 
-
+const Content = styled.div`
+    background-color:#F2EFF5;
+    min-height:100px;
+    border:1px solid #B8B8B8;
+    border-radius:10px;
+    padding:30px 100px;
+    box-sizing:border-box;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
 `
