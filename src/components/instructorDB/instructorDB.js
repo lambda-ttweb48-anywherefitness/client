@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react'
 import styled from 'styled-components'
 import {useHistory} from 'react-router-dom'
+import PassCards from './PassCards'
 
 
 import editIcon from '../../assets/images/icons/edit.png'
@@ -12,6 +13,8 @@ import { UserContext } from "../../utils/UserContext.js";
 
 
 import { axiosWithAuth } from "../../utils/axiosWithAuth.js";
+import FormatDate from '../../utils/FormatDate';
+import { capitalizeString } from '../../utils/'
 
 
 
@@ -206,7 +209,7 @@ export default function IDashboard( props ){
             .get("https://anywherefitness-server.herokuapp.com/dash/classes" )
             .then((res) => {
                 setClasses(res.data);
-                console.log(res.data);
+                // console.log(res.data);
             })
             .catch((err) => {
                 console.log(err.res);
@@ -224,6 +227,7 @@ export default function IDashboard( props ){
                 <StyledButton2 id="createClass" onClick={handleClick1}>Create Class</StyledButton2>
                 <StyledLine></StyledLine>
             </StyledInfo>
+            
             <StyledEvents>UPCOMING EVENTS</StyledEvents>
             <StyledClasses className="classes">
                 {
@@ -235,10 +239,10 @@ export default function IDashboard( props ){
                                 <ul>
                                     <li><span><img src={editIcon}/></span>{ item.name } </li>
                                     <li><span></span>{item.type} </li>
-                                    <li><span></span>{item.start}</li>
                                     <li><span><img src={clockIcon}/></span>{item.duration}</li>
                                     <li><span><img src={activityIcon}/></span>{item.intensity}</li>
-                                    <li><span><img src={locIcon}/></span>{item.location}</li>
+                                    <li><span><img src={locIcon}/></span>{capitalizeString(item.location)}</li>
+                                    <li><span></span>{FormatDate(item.start)}</li>
                                     <li><span>edit</span></li>
                                 </ul>
                                 </ClassInfo>
@@ -249,6 +253,7 @@ export default function IDashboard( props ){
 
                     
             </StyledClasses>
+            <PassCards />
 
             
         </StyledContainer>
