@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 
 import Header from './components/header';
-
+import Home from './components/Home/Home.js';
 import Login from "./components/Login/Login.js";
 import Register from "./components/Register/Register.js";
 import IDashboard from "./components/instructorDB/instructorDB"
@@ -22,9 +22,9 @@ import Search from './components/client/Search';
 
 
 const Container = styled.div`
-    width:60%;
+    width:100%;
+    height:100vh;
     margin:auto;
-    margin-top:2%;
 `
 
 function App() {
@@ -36,6 +36,7 @@ function App() {
             
             <Container>
                 <Switch>
+                    <Route exact path="/" component={Home} />
                     <Route exact path="/login" component={Login} />
                     <Route path="/register" component={Register} />
                     <Route path='/createclass' component={CreateClass} />
