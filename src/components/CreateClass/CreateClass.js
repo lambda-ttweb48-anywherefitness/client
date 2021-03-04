@@ -214,7 +214,7 @@ const H1 = styled.h1`
 
 const CreateClassForm = styled.div`
     background-color: rgba(82, 45, 128, 0.08);
-    width: 45%;
+    width: 72%;
     border-radius: 8px;
     margin: auto;
     padding: 2rem;
